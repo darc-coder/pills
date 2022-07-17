@@ -1,0 +1,33 @@
+.SongBox {
+    width: 150px;
+    height: 150px;
+    border: none;
+    padding: 12px;
+    white-space: nowrap;
+}
+
+.SongBox img {
+    width: 100%;
+    height: 100%;
+}
+
+.SongBox .skeleton {
+    animation: loading 1s linear infinite alternate;
+}
+
+@keyframes loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 90%);
+    }
+}
+
+.SongBox h5,
+.SongBox h6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
+    font-weight: 400;
+}

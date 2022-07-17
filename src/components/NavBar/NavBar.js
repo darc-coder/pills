@@ -24,7 +24,7 @@ const NavBar = (props) => {
 
   return (
     <nav className="bottom-nav">
-      {Object.keys(navItems).map((key) => {
+      {Object.keys(navItems).map(key => {
         return (
           <li className={key == activeNav ? 'active' : ''} key={key} onClick={() => { setactiveNav(key); props.activeNav(key); }}>
             <a href={navItems[key].link}>

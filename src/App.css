@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   height: 100%;
 }
 
@@ -18,8 +17,6 @@ body {
   grid-template-rows: auto 50px;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
-
 }
 
 [class^='material'] {
@@ -97,6 +94,7 @@ a span:nth-child(2) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
+  overflow-y: auto;
   justify-items: stretch;
   height: 100%;
 }
@@ -121,3 +119,29 @@ a span:nth-child(2) {
   background: blue;
   transform: translateX(200%);
 }
+
+/* Custom Scroll Bar Start*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Custom Scroll Bar End*/

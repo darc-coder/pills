@@ -1,1 +1,19 @@
-.Section {}
+.Section {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  column-gap: 10px;
+  row-gap: 20px;
+  width: 100%;
+  min-height: 250px;
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 4px 12px;
+    background-color: #f2f2f8;
+}

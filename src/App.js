@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import SongIdListContext, { songIdContext } from './SongIdListContext';
+import React, { useState } from 'react';
+import SongIdListContext from './SongIdListContext';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import Home from './routes/Home/Home';
 import Chart from './routes/Chart/Chart';

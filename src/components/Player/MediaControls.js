@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { songIdContext, setsongIdContext, songListContext } from '../../SongIdListContext';
 import { playingContext, toggleContext, durationContext } from './AudioStateContext';
 import { urlContext, downloadingContext, downloadedContext } from './PlayersContext';
@@ -46,6 +46,7 @@ const MediaControls = () => {
             forceDownload(songUrl, song.name + '.mp3', '_blank');
         setDownloading(false);
         setDownloaded(true);
+        if (err) console.error(err);
     }
 
     return (

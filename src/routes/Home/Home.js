@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './Home.css';
 import useFetch from '../../useFetch';
 import Search from '../../components/Search/Search';
 import Section from '../../components/Section/Section';
+import Loading from '../../components/Loading/Loading';
 
 const Home = () => {
   const sections = {
@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <div className="Home">
       <Search />
-      {isPending && <div>Loading...</div>}
+      {isPending && <Loading />}
       {error && <div>{error}</div>}
       {!isPending && !error && Object.keys(sections).map(key => {
         return (

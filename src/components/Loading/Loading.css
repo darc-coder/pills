@@ -1,0 +1,55 @@
+.loading{
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+}
+
+.loading .lds-ring {
+    display: inline-block;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: scale(3) translate(-20%, -35%);
+}
+
+.lds-ring div:nth-child(1){
+    --delay: 0s;
+}
+
+.lds-ring div:nth-child(2) {
+    --delay: 0.45s;
+}
+
+.lds-ring div:nth-child(3) {
+    --delay: 0.3s;
+}
+
+.lds-ring div:nth-child(4) {
+    --delay: 0.15s;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 100%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) calc(var(--delay)) infinite;
+    border-color: #1976d2 transparent transparent transparent;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

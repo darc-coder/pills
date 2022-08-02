@@ -1,0 +1,110 @@
+[
+    {
+        "id": "E2noJh79",
+        "name": "Kangan Ruby",
+        "album": {
+            "id": "36090152",
+            "name": "Raksha Bandhan",
+            "url": "https://www.jiosaavn.com/album/raksha-bandhan/8dBFvXI4PLY_"
+        },
+        "year": "2022",
+        "releaseDate": "2022-06-29",
+        "duration": "242",
+        "label": "Zee Music Co.",
+        "primaryArtists": "Himesh Reshammiya",
+        "primaryArtistsId": "455132",
+        "explicitContent": 0,
+        "playCount": "764684",
+        "language": "hindi",
+        "hasLyrics": "true",
+        "artist": "Himesh Reshammiya",
+        "image": [
+            {
+                "quality": "50x50",
+                "link": "http://c.saavncdn.com/440/Raksha-Bandhan-Hindi-2022-20220705150002-50x50.jpg"
+            }
+        ],
+        "url": "https://www.jiosaavn.com/song/kangan-ruby/NVoFXj5YAAo",
+        "copyright": "© 2022 Zee Music Company",
+        "downloadUrl": [
+            {
+                "quality": "12kbps",
+                "link": "https://aac.saavncdn.com/440/3a62f051e11647c01b1ffdc0a697662d_12.mp4"
+            },
+            {
+                "quality": "48kbps",
+                "link": "https://aac.saavncdn.com/440/3a62f051e11647c01b1ffdc0a697662d_48.mp4"
+            },
+            {
+                "quality": "96kbps",
+                "link": "https://aac.saavncdn.com/440/3a62f051e11647c01b1ffdc0a697662d_96.mp4"
+            },
+            {
+                "quality": "160kbps",
+                "link": "https://aac.saavncdn.com/440/3a62f051e11647c01b1ffdc0a697662d_160.mp4"
+            },
+            {
+                "quality": "320kbps",
+                "link": "https://aac.saavncdn.com/440/3a62f051e11647c01b1ffdc0a697662d_320.mp4"
+            }
+        ]
+    },
+    {
+        "id": "Y7IHeQ33",
+        "name": "Tere Saath Hoon Main",
+        "album": {
+            "id": "36090152",
+            "name": "Raksha Bandhan",
+            "url": "https://www.jiosaavn.com/album/raksha-bandhan/8dBFvXI4PLY_"
+        },
+        "year": "2022",
+        "releaseDate": "2022-06-29",
+        "duration": "345",
+        "label": "Zee Music Co.",
+        "primaryArtists": "Himesh Reshammiya, Nihal Tauro",
+        "primaryArtistsId": "455132, 2706748",
+        "explicitContent": 0,
+        "playCount": "731252",
+        "language": "hindi",
+        "hasLyrics": "true",
+        "artist": "Himesh Reshammiya, Nihal Tauro",
+        "image": [
+            {
+                "quality": "50x50",
+                "link": "http://c.saavncdn.com/440/Raksha-Bandhan-Hindi-2022-20220705150002-50x50.jpg"
+            },
+            {
+                "quality": "150x150",
+                "link": "http://c.saavncdn.com/440/Raksha-Bandhan-Hindi-2022-20220705150002-150x150.jpg"
+            },
+            {
+                "quality": "500x500",
+                "link": "http://c.saavncdn.com/440/Raksha-Bandhan-Hindi-2022-20220705150002-500x500.jpg"
+            }
+        ],
+        "url": "https://www.jiosaavn.com/song/tere-saath-hoon-main/KV8ieRFhBAA",
+        "copyright": "© 2022 Zee Music Company",
+        "downloadUrl": [
+            {
+                "quality": "12kbps",
+                "link": "https://aac.saavncdn.com/440/3eae74004dfc7ba1649c3882760a7449_12.mp4"
+            },
+            {
+                "quality": "48kbps",
+                "link": "https://aac.saavncdn.com/440/3eae74004dfc7ba1649c3882760a7449_48.mp4"
+            },
+            {
+                "quality": "96kbps",
+                "link": "https://aac.saavncdn.com/440/3eae74004dfc7ba1649c3882760a7449_96.mp4"
+            },
+            {
+                "quality": "160kbps",
+                "link": "https://aac.saavncdn.com/440/3eae74004dfc7ba1649c3882760a7449_160.mp4"
+            },
+            {
+                "quality": "320kbps",
+                "link": "https://aac.saavncdn.com/440/3eae74004dfc7ba1649c3882760a7449_320.mp4"
+            }
+        ]
+    }
+]

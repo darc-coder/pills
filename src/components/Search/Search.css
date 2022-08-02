@@ -1,1 +1,19 @@
-.Search {}
+.search {
+    display: flex;
+    width: 80%;
+    padding: 24px 12px;
+}
+
+.search input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2rem;
+    color: black;
+    outline: none;
+}
+
+.search input:focus {
+    border-color: #aaa;
+}
+

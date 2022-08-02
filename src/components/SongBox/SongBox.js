@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './SongBox.css';
+import { Link } from 'react-router-dom';
 
 const SongBox = (props) => {
   let { title, type, id, image } = props.song;
@@ -11,20 +12,48 @@ const SongBox = (props) => {
   title = sanityTitle(title);
 
   const [imgSrc, setimgSrc] = useState(image);
+  const [imgLoad, setimgLoad] = useState(false)
 
   function imageReplace() {
     setimgSrc(defaultImgUrl);
   }
 
+  function songDiv() {
+    return (
+      <div className="SongBox" title={title} id={id}>
+
+        <img
+          ref={(input) => {
+            // onLoad replacement for SSR
+            if (!input) { return; }
+            const img = input;
+
+            const updateFunc = () => {
+              setimgLoad(true);
+            };
+            img.onload = updateFunc;
+            if (img.complete) {
+              updateFunc();
+            }
+          }}
+          onError={() => imageReplace()}
+          className={imgLoad ? '' : 'skeleton'}
+          src={imgSrc}
+          alt=''
+        />
+        <h5 title={title}>{title}</h5>
+        <h6>{artistName}</h6>
+        <h6>{type}</h6>
+
+      </div>
+    )
+  }
+
   return (
-    <div className="SongBox" title={title} id={id}>
-
-      <img src={imgSrc} className={imgSrc === defaultImgUrl ? 'skeleton' : ''} alt="" style={styles.img} onError={() => imageReplace()} />
-      <h5 title={title}>{title}</h5>
-      <h6>{artistName}</h6>
-      <h6>{type}</h6>
-
-    </div>
+    <>
+      {type === "playlist" && <Link to={'/playlist?id=' + props.song.id}>{songDiv()}</Link>}
+      {type === "album" && <Link to={'/album?id=' + props.song.id}>{songDiv()}</Link>}
+    </>
   );
 };
 

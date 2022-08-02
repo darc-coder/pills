@@ -1,0 +1,237 @@
+.Player {
+  display: grid;
+  grid-template-rows: auto auto;
+  height: calc(100vh - 50px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  --height: 70px;
+  background-color: #fafafa;
+}
+
+.playerMax,
+.playerMin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  color: #fff;
+  background-color: #ff6043;
+  user-select: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.Player .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.2rem;
+  color: #bdbdbd;
+}
+
+.Player::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255);
+  box-shadow: inset 0 0 100px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  z-index: 2;
+  animation: fade-out .25s ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 0.9;
+    height: 100%;
+  }
+
+  90% {
+    opacity: 0;
+    height: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    height: 0;
+  }
+}
+
+.seek-bar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0 12px;
+}
+
+.Player.mini .seek-bar{
+  padding: 0;
+}
+
+.duration, .fullDuration{
+  width: 40px;
+  text-align: center;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 100%;
+  border-radius: 30px;
+  border: 2px solid #fff;
+  background-color: #e0e0e0;
+  /* margin: -2rem auto 6rem; */
+}
+
+.progress-color {
+  background: #1389e9;
+  height: 100%;
+  width: 0;
+  border-radius: 30px;
+  transition: width 0.25s ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .playerMax {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .Player.max .controls {
+    width: 300px;
+  }
+}
+
+.Player .bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  user-select: none;
+}
+
+.Player.mini .controls {
+  justify-content: flex-start;
+}
+
+.controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+  gap: 12px;
+  user-select: none;
+}
+
+.controls span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 72px;
+  height: 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  color: rgb(33, 150, 245);
+  border-radius: 25px;
+  text-align: center;
+  /* line-height: 50px; */
+  font-size: 36px;
+  cursor: pointer;
+}
+
+.controls span:active,
+.controls span:focus,
+.controls span:hover {
+  color: rgb(33, 150, 245);
+  background-color: rgba(33, 150, 245, 0.2);
+}
+
+.controls span:first-child {
+  font-size: 26px;
+}
+
+.controls .downloading::before{
+  --size: 20px;
+  content: "";
+  border: 2px solid #dbf2ff;
+  width: var(--size);
+  height: var(--size);
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border-right: 2px solid #2196f5;
+  text-align: center;
+  animation: spin 0.9s cubic-bezier(0.53, 0.21, 0.29, 0.67) infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  margin: 20px 10px;
+  transition: all 0.5s ease-out;
+}
+
+.switch input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch input[type=checkbox]:checked+label {
+  background: #4DB6AC;
+}
+
+.switch input[type=checkbox]:checked+label::after {
+  left: calc(100% - 6px);
+  transform: translateX(-100%);
+}
+
+.switch label {
+  cursor: pointer;
+  width: 72px;
+  height: 32px;
+  background: #FF8A65;
+  display: block;
+  border-radius: 24px;
+  position: relative;
+  margin: 0 10px;
+  transition: all 0.5s ease-out;
+}
+
+.switch label::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 16px;
+  transition: 0.5s;
+}

@@ -5,12 +5,13 @@ import AlbumSection from './AlbumSection';
 import Loading from '../../components/Loading/Loading';
 import './Album.css';
 
-const Album = ({ type }) => {
+const Album = ({ type, queryID }) => {
   let query = useQuery();
+  let queryId = queryID || query.get('id');
 
   return (
     <div className="Album">
-      <AlbumDiv album_id={query.get("id") || '0'} type={type} />
+      <AlbumDiv album_id={queryId || '0'} type={type} />
     </div>
   )
 };

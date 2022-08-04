@@ -5,7 +5,7 @@ import { playerMaxedContext, imgSrcContext } from './PlayersContext'
 import { durationContext, fullDurationContext } from './AudioStateContext';
 import './PlayerMin.css';
 
-function PlayerMin({ data, setplayerActive }) {
+function PlayerMin({ data, reInit }) {
     const { playerMaxed, setPlayerMax } = useContext(playerMaxedContext);
     const { imgSrc, setImgSrc } = useContext(imgSrcContext);
     const { duration, setDuration } = useContext(durationContext);
@@ -49,7 +49,7 @@ function PlayerMin({ data, setplayerActive }) {
                 <MediaControls />
             </div>
 
-            <span className="material-symbols-outlined close" onClick={(e) => { e.stopPropagation(); setplayerActive(false); }}>close</span>
+            <span className="material-symbols-outlined close" onClick={(e) => { e.stopPropagation(); reInit(); }}>close</span>
         </div>
     )
 }

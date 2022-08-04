@@ -4,7 +4,6 @@ import './Section.css';
 import SongBox from '../SongBox/SongBox';
 
 const Section = (props) => {
-  // console.log(props.sectionData);
   return (
     <>
       <span className="section-header">

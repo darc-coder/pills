@@ -1,30 +1,29 @@
 import React, { useContext } from 'react';
-import { songIdContext, setsongIdContext, songListContext } from '../../SongIdListContext';
+import { songIdContext, songListContext } from '../../SongIdListContext';
 import { playingContext, toggleContext, durationContext } from './AudioStateContext';
 import { urlContext, downloadingContext, downloadedContext } from './PlayersContext';
 
 const MediaControls = () => {
-    const songId = useContext(songIdContext);
-    const setsongId = useContext(setsongIdContext);
+    const { songId, setSongId } = useContext(songIdContext);
     const songList = useContext(songListContext);
     const { playing } = useContext(playingContext);
     const { toggle } = useContext(toggleContext);
     const { setDuration } = useContext(durationContext);
-    const songUrl = useContext(urlContext);
+    const { url: songUrl } = useContext(urlContext);
     const { downloading, setDownloading } = useContext(downloadingContext);
     const { downloaded, setDownloaded } = useContext(downloadedContext);
 
     const next = () => {
         let index = songList.findIndex(song => song.id === songId);
         if (index + 1 < songList.length) {
-            setsongId(songList[index + 1].id);
+            setSongId(songList[index + 1].id);
         }
     }
 
     const previous = () => {
         let index = songList.findIndex(song => song.id === songId);
         if (index > 0) {
-            setsongId(songList[index - 1].id);
+            setSongId(songList[index - 1].id);
         }
     }
 
@@ -36,7 +35,7 @@ const MediaControls = () => {
         setDownloading(true);
         let song = songList.find(song => song.id === songId);
         let url = songUrl.slice(8,);
-        let corsUrl = 'https://cors-anywhere.herokuapp.com/' + url;
+        let corsUrl = 'https://nitz-cors.herokuapp.com/' + url;
 
         let { blobUrl, blobSize, err } = await downloadResource(corsUrl, song.name + '.mp3');
 

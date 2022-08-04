@@ -4,33 +4,35 @@ import Loading from '../Loading/Loading';
 import { songIdContext } from '../../SongIdListContext';
 import PlayersContext from './PlayersContext'
 import { playerMaxedContext, qualityContext, urlContext } from './PlayersContext';
-import { downloadingContext, downloadedContext } from './PlayersContext';
-import AudioStateContext from './AudioStateContext';
+import { downloadingContext, downloadedContext, reInitContext as PlayerReInit } from './PlayersContext';
+import AudioStateContext, { reInitContext as AudioReInit } from './AudioStateContext';
 import PlayerMax from './PlayerMax';
 import AudioPlayer from './Audio';
 import PlayerMin from './PlayerMin';
 import './Player.css';
 
 const Player = () => {
-  let songId = useContext(songIdContext);
-  let { isPending, data, error } = useFetch('https://saavn.me/songs?id=' + songId);
+  const { songId, setSongId } = useContext(songIdContext);
+  const { isPending, data, error } = useFetch('https://saavn.me/songs?id=' + songId);
 
   return (
     <PlayersContext>
       <AudioStateContext>
-        <MainPlayer songId={songId} isPending={isPending} data={data} error={error} />
+        <MainPlayer songId={songId} isPending={isPending} data={data} error={error} setSongId={setSongId} />
       </AudioStateContext>
     </PlayersContext>
   )
 };
 
-const MainPlayer = ({ songId, isPending, data, error }) => {
+const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
   const [playerActive, setplayerActive] = useState(false);
   const { playerMaxed } = useContext(playerMaxedContext);
   const { quality } = useContext(qualityContext);
   const { url, setUrl } = useContext(urlContext);
   const { setDownloading } = useContext(downloadingContext);
   const { setDownloaded } = useContext(downloadedContext);
+  const playerReInit = useContext(PlayerReInit);
+  const audioReInit = useContext(AudioReInit);
 
   useEffect(() => {
     setplayerActive(true);
@@ -43,12 +45,22 @@ const MainPlayer = ({ songId, isPending, data, error }) => {
       setUrl(quality === 'low' ? data.downloadUrl[3].link : data.downloadUrl[4].link);
   }, [data, isPending, quality, setUrl]);
 
+  const reInit = async () => {
+    new Promise((resolve, reject) => {
+      setSongId('');
+      playerReInit();
+      audioReInit();
+      resolve(true);
+    })
+      .then(() => setplayerActive(false));
+  }
+
   return (
     <>
       {isPending && <Loading />}
       {error && <><Loading /> <div>Error: {error}</div></>}
       {data && playerActive && playerMaxed ? <PlayerMax data={data} /> : ''}
-      {data && playerActive && !playerMaxed ? <PlayerMin data={data} setplayerActive={setplayerActive} /> : ''}
+      {data && playerActive && !playerMaxed ? <PlayerMin data={data} reInit={reInit} /> : ''}
       {
         data && playerActive ? <div className="AudioPlayer">
           <AudioPlayer url={url} />

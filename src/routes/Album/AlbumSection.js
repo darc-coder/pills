@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import AlbumSongItem from './AlbumSongItem';
-import { setsongListContext } from '../../SongIdListContext';
+import { songListContext } from '../../SongIdListContext';
 
 function AlbumSection({ data }) {
     if (data.name) {
@@ -17,7 +17,7 @@ function AlbumSection({ data }) {
 function AlbumSectionDiv({ data }) {
     const [imgSrc, setimgSrc] = useState(data.image[2].link);
     const [imgLoad, setimgLoad] = useState(false);
-    const setSongList = useContext(setsongListContext);
+    const { setSongList } = useContext(songListContext);
 
     function imageReplace() {
         setimgSrc('/default-album-large.jpg');

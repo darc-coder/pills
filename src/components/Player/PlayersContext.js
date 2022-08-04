@@ -6,6 +6,7 @@ export const qualityContext = React.createContext();
 export const urlContext = React.createContext();
 export const downloadingContext = React.createContext();
 export const downloadedContext = React.createContext();
+export const reInitContext = React.createContext();
 
 function PlayersContext({ children }) {
     const [playerMaxed, setPlayerMax] = useState(true);
@@ -15,6 +16,14 @@ function PlayersContext({ children }) {
     const [downloading, setDownloading] = useState(false);
     const [downloaded, setDownloaded] = useState(false);
 
+    const reInit = () => {
+        setPlayerMax(false);
+        setQuality('low');
+        setUrl('');
+        setDownloading(false);
+        setDownloaded(false);
+    }
+
     return (
 
         <playerMaxedContext.Provider value={{ playerMaxed, setPlayerMax }}>
@@ -23,7 +32,9 @@ function PlayersContext({ children }) {
                     <urlContext.Provider value={{ url, setUrl }}>
                         <downloadingContext.Provider value={{ downloading, setDownloading }}>
                             <downloadedContext.Provider value={{ downloaded, setDownloaded }}>
-                                {children}
+                                <reInitContext.Provider value={reInit}>
+                                    {children}
+                                </reInitContext.Provider>
                             </downloadedContext.Provider>
                         </downloadingContext.Provider>
                     </urlContext.Provider>

@@ -10,6 +10,7 @@ const useAudio = url => {
     const { setFullDuration } = useContext(fullDurationContext);
 
     useEffect(() => {
+        console.log('hah', playing)
         playing ? audio.play() : audio.pause();
     }, [audio, playing]
     );

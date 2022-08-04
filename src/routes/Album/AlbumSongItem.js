@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { sanityTitle } from './AlbumSection';
-import { setsongIdContext } from '../../SongIdListContext';
+import { songIdContext } from '../../SongIdListContext';
 
 
 const AlbumSongItem = ({ song }) => {
 
     const [imgSrc, setimgSrc] = useState(song.image[0].link);
-    let setSongId = useContext(setsongIdContext);
+    let { setSongId } = useContext(songIdContext);
 
     return (
         <div className="SongItem" onClick={() => setSongId(song.id)}>

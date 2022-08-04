@@ -7,9 +7,9 @@ import { durationContext, fullDurationContext } from './AudioStateContext';
 
 function PlayerMax({ data }) {
     const [imgLoad, setimgLoad] = useState(false);
-    const {playerMaxed, setPlayerMax} = useContext(playerMaxedContext);
-    const {imgSrc, setImgSrc} = useContext(imgSrcContext);
-    const {quality, setQuality }= useContext(qualityContext);
+    const { playerMaxed, setPlayerMax } = useContext(playerMaxedContext);
+    const { imgSrc, setImgSrc } = useContext(imgSrcContext);
+    const { quality, setQuality } = useContext(qualityContext);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
 

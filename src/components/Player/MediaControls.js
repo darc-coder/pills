@@ -33,7 +33,6 @@ const MediaControls = () => {
 
     const download = async () => {
         setDownloading(true);
-        console.log(songList);
         let song = songList.find(song => song.id === songId);
         let url = songUrl.slice(8,);
         let corsUrl = 'https://nitz-cors.herokuapp.com/' + url;

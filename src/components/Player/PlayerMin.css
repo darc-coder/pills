@@ -64,8 +64,4 @@
     height: 10px;
     width: 70%;
   }
-
-  .controls span:first-child {
-    order: 1;
-  }
 }

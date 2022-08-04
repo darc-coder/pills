@@ -68,7 +68,7 @@
   }
 }
 
-.seek-bar{
+.seek-bar {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -77,11 +77,12 @@
   padding: 0 12px;
 }
 
-.Player.mini .seek-bar{
+.Player.mini .seek-bar {
   padding: 0;
 }
 
-.duration, .fullDuration{
+.duration,
+.fullDuration {
   width: 40px;
   text-align: center;
 }
@@ -113,6 +114,10 @@
 @media screen and (max-width: 420px) {
   .Player.max .controls {
     width: 300px;
+  }
+
+  .controls span:first-child {
+    order: 1;
   }
 }
 
@@ -167,7 +172,7 @@
   font-size: 26px;
 }
 
-.controls .downloading::before{
+.controls .downloading::before {
   --size: 20px;
   content: "";
   border: 2px solid #dbf2ff;
@@ -185,7 +190,8 @@
   from {
     transform: rotate(0deg);
   }
-  to{
+
+  to {
     transform: rotate(360deg);
   }
 }

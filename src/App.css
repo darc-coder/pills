@@ -10,6 +10,7 @@
   margin: 0;
   font-family: 'Poppins', sens-serif;
   box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
 }
 
 body {

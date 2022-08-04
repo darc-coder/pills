@@ -5,7 +5,7 @@ import { urlContext, downloadingContext, downloadedContext } from './PlayersCont
 
 const MediaControls = () => {
     const { songId, setSongId } = useContext(songIdContext);
-    const songList = useContext(songListContext);
+    const { songList } = useContext(songListContext);
     const { playing } = useContext(playingContext);
     const { toggle } = useContext(toggleContext);
     const { setDuration } = useContext(durationContext);
@@ -33,6 +33,7 @@ const MediaControls = () => {
 
     const download = async () => {
         setDownloading(true);
+        console.log(songList);
         let song = songList.find(song => song.id === songId);
         let url = songUrl.slice(8,);
         let corsUrl = 'https://nitz-cors.herokuapp.com/' + url;

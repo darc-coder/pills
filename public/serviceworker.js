@@ -34,15 +34,23 @@ self.addEventListener('install', evt => {
 
 // fetch event
 self.addEventListener('fetch', evt => {
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
-                return fetchRes;
-            });
-        }).catch(() => {
-            if (evt.request.url.indexOf('/') > -1) {
-                return caches.match('/fallback.html');
-            }
-        })
-    );
+    evt.stopImmediatePropagation();
+
+    if (evt.request.url.indexOf('.jpg') !== -1) {
+        evt.respondWith(
+            caches.match(evt.request).then(cacheRes => {
+                return cacheRes || fetch(evt.request).then(fetchRes => {
+                    caches.open(dynamicCacheName).then(cache => {
+                        cache.put(evt.request.url, fetchRes.clone());
+                        // limitCacheSize(dynamicCacheName, 100);
+                        return fetchRes.ok ? fetchRes.blob() : fetch(evt.request);
+                    })
+                });
+            }).catch(() => {
+                if (evt.request.url.indexOf('/') > -1) {
+                    return caches.match('/fallback.html');
+                }
+            })
+        );
+    }
 });

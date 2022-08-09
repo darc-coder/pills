@@ -65,10 +65,10 @@
     }
 }
 
-@media screen and (max-width: 768px) and (min-width: 500px) {
+@media screen and (max-width: 768px) and (min-width: 425px) {
     .top img {
-        width: 400px;
-        height: 400px;
+        width: 425px;
+        height: 425px;
         position: relative;
         left: 50%;
         transform: translateX(-50%);

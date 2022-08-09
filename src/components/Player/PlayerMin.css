@@ -3,7 +3,7 @@
 }
 
 .Player.mini {
-  grid-template-columns: calc(30%) auto;
+  grid-template-columns: auto 1fr;
   top: unset;
   bottom: 50px;
   height: var(--height);
@@ -19,6 +19,7 @@
 .Player.mini .right{
   display: grid;
   width: fit-content;
+  justify-self: center;
 }
 
 .Player.mini .song-name{
@@ -50,7 +51,6 @@
     justify-items: center;
     align-items: center;
     height: 100%;
-    width: 100%;
     padding: 0 12px 0 0;
   }
 
@@ -62,6 +62,5 @@
 
   .progress-bar {
     height: 10px;
-    width: 70%;
   }
 }

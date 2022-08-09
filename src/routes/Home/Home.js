@@ -22,7 +22,7 @@ const Home = () => {
     <div className="Home">
       <Search />
       {isPending && <Loading />}
-      {error && <div>{error}</div>}
+      {error && <div><Loading />{error}</div>}
       {!isPending && !error && Object.keys(sections).map(key => {
         return (
           <Section name={key} sectionData={data[sections[key]]} key={key} />

@@ -15,7 +15,7 @@ function AlbumSection({ data }) {
 }
 
 function AlbumSectionDiv({ data }) {
-    const [imgSrc, setimgSrc] = useState(data.image[2].link);
+    const [imgSrc, setimgSrc] = useState(data.image[2]?.link);
     const [imgLoad, setimgLoad] = useState(false);
     const { setSongList } = useContext(songListContext);
 

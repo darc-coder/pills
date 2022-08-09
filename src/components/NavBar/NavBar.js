@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = (props) => {
-  const [navItems, setnavItems] = useState({
+  const [navItems] = useState({
     Home: {
       name: 'Home',
       link: '/',
@@ -25,7 +25,7 @@ const NavBar = (props) => {
     <nav className="bottom-nav">
       {Object.keys(navItems).map(key => {
         return (
-          <li className={key == props.activePage ? 'active' : ''} key={key} onClick={() => { props.activateNav(key) }}>
+          <li className={key === props.activePage ? 'active' : ''} key={key} onClick={() => { props.activateNav(key) }}>
             <Link to={navItems[key].link}>
               <span className="material-symbols-outlined">{navItems[key].icon}</span>
               <span className="text">{navItems[key].name}</span>

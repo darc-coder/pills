@@ -61,14 +61,6 @@ function sanityTitle(title = "") {
   return title.replace(/\(.*\)/gi, '');
 }
 
-const styles = {
-  img: {
-    height: '100px',
-    width: '100px',
-    fontSize: '10px'
-  }
-};
-
 SongBox.propTypes = {
   title: PropTypes.string,
   type: PropTypes.string,

@@ -33,4 +33,4 @@ function AudioStateContext({ children }) {
     )
 }
 
-export default AudioStateContext
+export default AudioStateContext;

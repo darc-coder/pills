@@ -3,16 +3,13 @@ const staticCacheName = 'site-static-v1';
 const dynamicCacheName = 'site-dynamic-v1';
 
 const assets = [
-    '/',
     '/index.html',
     '/img/pills512.png',
-    '/home.json',
-    '/html/fallback.html'
+    'home.json',
+    'fallback.html',
+    'fallback.css',
+    '/resources/astronaut.png'
 ];
-
-const typesToCache = ['image/jpg', 'image/png', 'text/css', 'font/woff2', 'font/woff', 'font/ttf'];
-const fileExtensionsToCache = ['jpg', 'png', 'woff2', 'woff', 'ttf'];
-const doNotCacheFiles = ['json']
 
 // cache size limit function
 const limitCacheSize = (name, size) => {
@@ -30,7 +27,7 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then((cache) => {
             console.log('caching assets');
-            cache.addAll(assets).catch(err => console.log(err));
+            cache.addAll(assets).then(e => console.log(e)).catch(err => console.log(err));
         })
     );
 });
@@ -40,16 +37,11 @@ self.addEventListener('fetch', evt => {
     evt.respondWith(
         caches.match(evt.request).then(cacheRes => {
             return cacheRes || fetch(evt.request).then(fetchRes => {
-                return caches.open(dynamicCacheName).then(cache => {
-                    cache.put(evt.request.url, fetchRes.clone());
-                    // check cached items size
-                    limitCacheSize(dynamicCacheName, 100);
-                    return fetchRes;
-                })
+                return fetchRes;
             });
         }).catch(() => {
-            if (evt.request.url.indexOf('.html') > -1) {
-                return caches.match('/index.html');
+            if (evt.request.url.indexOf('/') > -1) {
+                return caches.match('/fallback.html');
             }
         })
     );

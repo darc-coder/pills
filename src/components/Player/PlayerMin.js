@@ -54,4 +54,4 @@ function PlayerMin({ data, reInit }) {
     )
 }
 
-export default PlayerMin
+export default PlayerMin;

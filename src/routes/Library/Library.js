@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './Library.css';
 
 const Library = () => (
@@ -7,8 +6,6 @@ const Library = () => (
     Library Component
   </div>
 );
-
-Library.propTypes = {};
 
 Library.defaultProps = {};
 

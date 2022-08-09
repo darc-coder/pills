@@ -1,0 +1,191 @@
+:root {
+    --side: 2px;
+    --x-move: 60px;
+    --y-move: 60px;
+    --last-x: 00px;
+    --last-y: 00px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease-out;
+    font-family: "Poppins", serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(45deg, #3f51b5, #ef5350);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 4px;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    min-height: 60vh;
+    width: 1000px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 16px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background: white;
+}
+
+.card .left {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 100px;
+
+    align-content: center;
+    justify-content: center;
+}
+
+.left .heading {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.left .cutout {
+    position: absolute;
+}
+
+.card .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.right .background {
+    display: grid;
+    background: #473164;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    align-content: center;
+    justify-content: center;
+}
+
+.background .star {
+    display: block;
+    position: absolute;
+    opacity: 0.5;
+    height: var(--side);
+    width: var(--side);
+    border-radius: 50px;
+    background: white;
+    animation: fade-away 0.5s ease-out calc(var(--delay)) 5 alternate forwards;
+}
+
+@keyframes fade-away {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+.background .planet {
+    background: #543368;
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    right: 0px;
+    align-self: center;
+    border-radius: 100%;
+    transform: translateX(50%);
+}
+
+.background .astronaut {
+    position: absolute;
+    height: 200px;
+    animation: rotate-move 9s linear infinite normal forwards;
+}
+
+@keyframes rotate-move {
+    from {
+        transform: rotate(0);
+        top: var(--last-y);
+        left: var(--last-x);
+        transform-origin: center;
+    }
+
+    to {
+        transform: rotate(360deg);
+        top: var(--y-move);
+        left: var(--x-move);
+        transform-origin: center;
+    }
+}
+
+.btn {
+    height: 50px;
+    width: 220px;
+    padding: 4px 8px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #0069d9;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 800px) {
+    .card {
+        grid-template-columns: 1fr 1fr;
+        min-height: 450px;
+        width: 800px;
+    }
+
+    .card .left {
+        row-gap: 80px;
+        padding: 24px;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-height: 800px) {
+    .card {
+        grid-template-rows: 400px 400px;
+        grid-template-columns: auto;
+        min-width: 300px;
+        width: 400px;
+        min-height: 600px;
+        display: grid;
+    }
+
+    .card .left {
+        row-gap: 50px;
+        padding: 24px;
+    }
+}
+
+@media only screen and (max-width: 600px) and (max-height: 800px) {
+    .card {
+        grid-template-rows: 300px 300px;
+        grid-template-columns: auto;
+        min-width: 300px;
+        width: 400px;
+        min-height: 600px;
+        display: grid;
+    }
+
+    .card .left {
+        row-gap: 20px;
+        padding: 12px;
+    }
+}

@@ -124,7 +124,7 @@ a span:nth-child(2) {
 .page {
   height: calc(100vh - 50px);
   width: 100vw;
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;

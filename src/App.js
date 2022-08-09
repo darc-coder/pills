@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import SongIdListContext from './SongIdListContext';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import SongIdListContext from './SongIdListContext';
+import ActivePageContext, { activeNavContext } from './ActivePageContext';
 import Home from './routes/Home/Home';
 import Chart from './routes/Chart/Chart';
 import Library from './routes/Library/Library';
@@ -10,15 +11,17 @@ import Album from './routes/Album/Album';
 import Player from './components/Player/Player';
 
 
-
 function App() {
+  return (
+    <ActivePageContext>
+      <MainApp />
+    </ActivePageContext>
+  );
+}
+
+const MainApp = () => {
   const pages = { Home: 0, Chart: 1, Library: 2 };
-  const [activeNav, setactiveNav] = useState("Home");
-
-  function activatePage(page) {
-    setactiveNav(page);
-  }
-
+  const { activeNav, activatePage } = useContext(activeNavContext);
   return (
     <SongIdListContext>
       <div className="App">
@@ -39,13 +42,18 @@ function App() {
         </Router >
       </div >
     </SongIdListContext>
-  );
+  )
 }
 
 function Page(props) {
   let { pages, activeNav, name } = props;
+  let style = {
+    transform: `translateX(calc(${pages[name] - pages[activeNav]}*100%)`,
+    overflowY: name === 'Home' ? 'scroll' : ''
+  };
+
   return (
-    <div className="page" name={props.name} style={{ transform: `translateX(calc(${pages[name] - pages[activeNav]}*100%)` }}>
+    <div className="page" name={props.name} style={style}>
       {props.childComponents()}
     </div>
   )

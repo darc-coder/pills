@@ -1,3 +1,47 @@
 .Home {
-    padding: 36px 0px 0px 0px;
+    padding: 8px 0px 0px 0px;
+}
+
+.Home header {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.logo .text {
+    font-family: 'Californication';
+    font-size: 36px;
+}
+
+@media screen and (max-width: 760px) {
+    .Home header {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        align-items: end;
+    }
+
+    .logo {
+        flex-direction: column;
+    }
+
+    .logo .text {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .logo {
+        gap: 10px;
+    }
 }

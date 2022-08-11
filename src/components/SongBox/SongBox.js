@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './SongBox.css';
 import { Link } from 'react-router-dom';
+import sanityTitle from '../../sanityTitle';
+import './SongBox.css';
 
 const SongBox = (props) => {
   let { title, type, id, image } = props.song;
@@ -56,10 +57,6 @@ const SongBox = (props) => {
     </>
   );
 };
-
-function sanityTitle(title = "") {
-  return title.replace(/\(.*\)/gi, '');
-}
 
 SongBox.propTypes = {
   title: PropTypes.string,

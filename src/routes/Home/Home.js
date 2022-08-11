@@ -4,6 +4,7 @@ import useFetch from '../../useFetch';
 import Search from '../../components/Search/Search';
 import Section from '../../components/Section/Section';
 import Loading from '../../components/Loading/Loading';
+import Logo from '../../components/Logo/Logo';
 
 const Home = () => {
   const sections = {
@@ -20,7 +21,10 @@ const Home = () => {
 
   return (
     <div className="Home">
-      <Search />
+      <header>
+        <Logo />
+        <Search />
+      </header>
       {isPending && <Loading />}
       {error && <div><Loading />{error}</div>}
       {!isPending && !error && Object.keys(sections).map(key => {

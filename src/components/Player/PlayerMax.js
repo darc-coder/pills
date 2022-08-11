@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { sanityTitle } from './Player';
+import sanityTitle from '../../sanityTitle';
 import MediaControls from './MediaControls';
 import { playerMaxedContext, imgSrcContext, qualityContext } from './PlayersContext'
 import { durationContext, fullDurationContext } from './AudioStateContext';
@@ -68,6 +68,7 @@ function PlayerMax({ data }) {
                 </div>
                 <div className="song-name album-name">
                     <h2>{sanityTitle(data.name)}</h2>
+                    <h5>{sanityTitle(data.artist)}</h5>
                 </div>
             </div>
             <div className="bottom">

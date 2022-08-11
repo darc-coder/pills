@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { sanityTitle } from './AlbumSection';
+import sanityTitle from '../../sanityTitle';
 import { songIdContext } from '../../SongIdListContext';
 
 

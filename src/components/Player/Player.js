@@ -58,7 +58,7 @@ const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
   return (
     <>
       {isPending && <Loading />}
-      {error && <><Loading /> <div>Error: {error}</div></>}
+      {error && <><div>Error: {error}</div></>}
       {data && playerActive && playerMaxed ? <PlayerMax data={data} /> : ''}
       {data && playerActive && !playerMaxed ? <PlayerMin data={data} reInit={reInit} /> : ''}
       {
@@ -68,10 +68,6 @@ const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
       }
     </>
   )
-}
-
-export function sanityTitle(title = "") {
-  return title.replace(/\(.*\)/gi, '');
 }
 
 Player.defaultProps = {};

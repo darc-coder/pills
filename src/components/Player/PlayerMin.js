@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { sanityTitle } from './Player';
+import sanityTitle from '../../sanityTitle';
 import MediaControls from './MediaControls';
 import { playerMaxedContext, imgSrcContext } from './PlayersContext'
 import { durationContext, fullDurationContext } from './AudioStateContext';

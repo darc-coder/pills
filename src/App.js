@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import SongIdListContext from './SongIdListContext';
 import ActivePageContext, { activeNavContext } from './ActivePageContext';
@@ -6,9 +6,9 @@ import Home from './routes/Home/Home';
 import Chart from './routes/Chart/Chart';
 import Library from './routes/Library/Library';
 import NavBar from './components/NavBar/NavBar';
-import './App.css';
 import Album from './routes/Album/Album';
 import Player from './components/Player/Player';
+import './App.css';
 
 
 function App() {
@@ -62,16 +62,18 @@ function Page(props) {
 function Pages({ pages, activeNav, activateNav }) {
   let location = useLocation();
 
-  switch (location.pathname.slice(1,)) {
-    case 'chart':
-      activateNav('Chart');
-      break;
-    case 'library':
-      activateNav('Library');
-      break;
-    default: activateNav('Home');
-      break;
-  }
+  useEffect(() => {
+    switch (location.pathname.slice(1,)) {
+      case 'chart':
+        activateNav('Chart');
+        break;
+      case 'library':
+        activateNav('Library');
+        break;
+      default: activateNav('Home');
+        break;
+    }
+  }, [activateNav, activeNav, location.pathname]);
 
   return (
     <div className="pages">

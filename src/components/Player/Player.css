@@ -13,7 +13,7 @@
 
 .playerMax,
 .playerMin {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -200,7 +200,7 @@
 .switch {
   display: inline-flex;
   align-items: center;
-  margin: 20px 10px;
+  margin: 10px 10px;
   transition: all 0.5s ease-out;
 }
 

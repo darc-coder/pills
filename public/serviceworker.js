@@ -2,9 +2,13 @@
 const staticCacheName = 'site-static-v1';
 const dynamicCacheName = 'site-dynamic-v1';
 
+let ENABLE_DYNAMIC_CACHING = true;
+
 const assets = [
     '/index.html',
     '/img/pills512.png',
+    '/default-album.jpg',
+    '/default-album-large.jpg',
     'home.json',
     'fallback.html',
     'fallback.css',
@@ -27,30 +31,46 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then((cache) => {
             console.log('caching assets');
-            cache.addAll(assets).then(e => console.log(e)).catch(err => console.log(err));
+            cache.addAll(assets).catch(err => console.log(err));
         })
     );
 });
 
 // fetch event
-self.addEventListener('fetch', evt => {
-    evt.stopImmediatePropagation();
+function handleError(evt) {
+    console.log('hoho')
+    if (evt.request.url.indexOf('/') > -1)
+        return caches.match('/fallback.html');
+}
 
-    if (evt.request.url.indexOf('.jpg') !== -1) {
-        evt.respondWith(
-            caches.match(evt.request).then(cacheRes => {
-                return cacheRes || fetch(evt.request).then(fetchRes => {
-                    caches.open(dynamicCacheName).then(cache => {
-                        cache.put(evt.request.url, fetchRes.clone());
-                        // limitCacheSize(dynamicCacheName, 100);
-                        return fetchRes.ok ? fetchRes.blob() : fetch(evt.request);
-                    })
-                });
-            }).catch(() => {
-                if (evt.request.url.indexOf('/') > -1) {
-                    return caches.match('/fallback.html');
+self.addEventListener('fetch', event => {
+    if (event.request.method !== 'GET')
+        return;
+
+    if (event.request.url.indexOf('.jpg') !== -1) {
+        event.respondWith((async () => {
+            const cachedResponse = await caches.match(event.request);
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+            try {
+                const response = await fetch(event.request);
+
+                if (!response || response.status !== 200 || response.type !== 'basic') {
+                    return response;
                 }
-            })
-        );
+
+                if (ENABLE_DYNAMIC_CACHING) {
+                    const responseToCache = response.clone();
+                    const cache = await caches.open(dynamicCacheName)
+                    await cache.put(event.request, responseToCache);
+                }
+
+                return response;
+            } catch (error) {
+                return handleError(event);
+            }
+
+        })());
     }
 });

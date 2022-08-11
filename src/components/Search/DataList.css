@@ -1,0 +1,87 @@
+.search:focus-within .datalist{
+    display: flex;
+}
+
+.datalist {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background-color: #fff;
+    border-top: 0px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    top: 15px;
+    width: 100%;
+    max-height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: all 0.2s ease-out;
+}
+
+@media screen and (max-width: 600px) {
+    .datalist {
+        transform: translateX(100%);
+        animation: slide-in 0.25s ease-out forwards;
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }   
+}
+
+.datalist.hidden {
+    display: none;
+}
+
+.datalist .options {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 12px 0px 0px;
+    cursor: pointer;
+    height: 60px;
+    border-radius: 4px;
+    background: #fff;
+    user-select: none;
+}
+
+.datalist .options:hover {
+    background-color: #e6e6ed;
+}
+
+.options .left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    width: calc(100% - 50px);
+    white-space: nowrap;
+}
+
+.options .left img{
+    height: 100%;
+    border-radius: 2px;
+}
+
+.options .value {
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    padding: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.options .text {
+    font-size: 14px;
+    padding: 2px;
+    color: #555;
+}

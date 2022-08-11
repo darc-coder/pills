@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import AlbumSongItem from './AlbumSongItem';
 import { songListContext } from '../../SongIdListContext';
+import sanityTitle from '../../sanityTitle';
 
 function AlbumSection({ data }) {
     if (data.name) {
@@ -15,7 +16,7 @@ function AlbumSection({ data }) {
 }
 
 function AlbumSectionDiv({ data }) {
-    const [imgSrc, setimgSrc] = useState(data.image[2]?.link);
+    const [imgSrc, setimgSrc] = useState(data.image[2]?.link || '/default-album-large.jpg');
     const [imgLoad, setimgLoad] = useState(false);
     const { setSongList } = useContext(songListContext);
 
@@ -62,10 +63,5 @@ function AlbumSectionDiv({ data }) {
         </>
     )
 }
-
-export function sanityTitle(title = "") {
-    return title.replace(/\(.*\)/gi, '');
-}
-
 
 export default AlbumSection;

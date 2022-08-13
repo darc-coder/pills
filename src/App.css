@@ -143,7 +143,6 @@ a{
 }
 
 .page:nth-child(3) {
-  background: blue;
   transform: translateX(200%);
 }
 

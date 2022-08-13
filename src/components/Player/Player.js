@@ -38,11 +38,12 @@ const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
     setplayerActive(true);
     setDownloading(false);
     setDownloaded(false);
-  }, [setDownloaded, setDownloading, songId]);
+    document.title = data?.name ? data.name + ' - Pills' : 'Pills by Nitz';
+  }, [data, setDownloaded, setDownloading, songId]);
 
   useEffect(() => {
     if (!isPending && data)
-      setUrl(quality === 'low' ? data.downloadUrl[3].link : data.downloadUrl[4].link);
+      setUrl(quality === 'low' ? data.downloadUrl[3]?.link : data.downloadUrl[4]?.link);
   }, [data, isPending, quality, setUrl]);
 
   const reInit = async () => {

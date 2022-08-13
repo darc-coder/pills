@@ -24,7 +24,7 @@
     font-size: 36px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
     .Home header {
         grid-template-columns: auto;
         grid-template-rows: auto auto;
@@ -40,7 +40,7 @@
     }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     .logo {
         gap: 10px;
     }

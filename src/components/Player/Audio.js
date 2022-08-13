@@ -27,8 +27,12 @@ const useAudio = url => {
 
     useEffect(() => {
         audio.addEventListener('ended', () => setPlaying(false));
+        audio.onpause = () => setPlaying(false);
+        audio.onplay = () => setPlaying(true);
         return () => {
             audio.removeEventListener('ended', () => setPlaying(false));
+            audio.removeEventListener('pause', () => setPlaying(false));
+            audio.removeEventListener('play', () => setPlaying(true));
         };
     }, [audio, setPlaying]);
 

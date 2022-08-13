@@ -20,7 +20,7 @@
     z-index: 2;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .datalist {
         transform: translateX(100%);
         animation: slide-in 0.25s ease-out forwards;

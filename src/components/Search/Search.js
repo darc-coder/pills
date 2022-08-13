@@ -9,7 +9,7 @@ import './DataList.css';
 const Search = () => {
 
   const [query, setquery] = useState('');
-  const { isPending, data, error } = useFetch(`https://saavn.me/search/all?query=${query}`);
+  const { isPending, data } = useFetch(`https://saavn.me/search/all?query=${query}`);
   const placeholderText = "Search For a song, albums, artist";
 
   const search = (event) => {

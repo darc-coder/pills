@@ -17,6 +17,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     transition: all 0.2s ease-out;
+    z-index: 2;
 }
 
 @media screen and (max-width: 600px) {

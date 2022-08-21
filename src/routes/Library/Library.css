@@ -1,1 +1,63 @@
-.Library {}
+.Library {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: calc(100vh - 50px);
+    gap: 5px;
+}
+
+.Library .Pic{
+    display: flex;
+    justify-content: center;
+}
+
+.Pic img{
+    height: 200px;
+    scale: 2;
+    
+}
+
+.Accordions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.Accordion {
+    height: auto;
+    width: 100%;
+    transition: all 0.25s ease-out;
+}
+
+.Accordion-head {
+    background-color: #f2f2f6;
+    color: #444;
+    position: sticky;
+    top: 0;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.Accordion .active,
+.Accordion-head:hover {
+    background-color: #dedee6;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.Accordion-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0px;
+    background-color: white;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: all 0.1s ease-out;
+}

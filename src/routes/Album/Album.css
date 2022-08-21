@@ -37,12 +37,21 @@
     align-items: center;
     gap: 15px;
     height: 50px;
+    width: calc(100vw);
     padding: 0px 10px;
     background-color: #f4f4f8;
 }
 
+.SongItem .name{
+    overflow-x: hidden;
+    width: calc(100%);
+    white-space: nowrap;
+}
+
 .SongItem h5,
 .SongItem h6 {
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 400;
 }
 

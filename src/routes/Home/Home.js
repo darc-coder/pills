@@ -16,7 +16,7 @@ const Home = () => {
 
   let data = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} };
 
-  const { isPending, data: Data, error } = useFetch('/home.json');
+  const { isPending, data: Data, error } = useFetch('https://saavn.me/home');
   data = Data;
 
   return (

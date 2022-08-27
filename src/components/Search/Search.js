@@ -62,7 +62,7 @@ const CreateOptions = ({ queryData }) => {
 }
 
 const Options = ({ imgSrc, value, type, id }) => {
-  const link = `/${type !== 'song' ? type + '?id=' + id : '#'}`;
+  const link = `/${(type !== 'song' && type !== 'artist') ? type + '?id=' + id : '#'}`;
   let { setSongId } = useContext(songIdContext);
 
   const forAudio = () => {

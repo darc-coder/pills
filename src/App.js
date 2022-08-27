@@ -36,6 +36,9 @@ const MainApp = () => {
             <Route path="/playlist/">
               <Album type="playlists" />
             </Route>
+            <Route>
+              <Pages pages={pages} activeNav={activeNav} activateNav={activatePage} />
+            </Route>
           </Switch>
           <Player />
           <NavBar activateNav={activatePage} activePage={activeNav} />

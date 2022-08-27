@@ -14,14 +14,14 @@ const MediaControls = () => {
     const { downloaded, setDownloaded } = useContext(downloadedContext);
 
     const next = () => {
-        let index = songList.findIndex(song => song.id === songId);
+        let index = songList.findIndex(song => song?.id === songId);
         if (index + 1 < songList.length) {
             setSongId(songList[index + 1].id);
         }
     }
 
     const previous = () => {
-        let index = songList.findIndex(song => song.id === songId);
+        let index = songList.findIndex(song => song?.id === songId);
         if (index > 0) {
             setSongId(songList[index - 1].id);
         }
@@ -33,16 +33,16 @@ const MediaControls = () => {
 
     const download = async () => {
         setDownloading(true);
-        let song = songList.find(song => song.id === songId);
+        let song = songList.find(song => song?.id === songId);
         let url = songUrl.slice(8,);
         let corsUrl = 'https://nitz-cors.herokuapp.com/' + url;
 
-        let { blobUrl, blobSize, err } = await downloadResource(corsUrl, song.name + '.mp3');
+        let { blobUrl, blobSize, err } = await downloadResource(corsUrl, song?.name + '.mp3');
 
         if (blobSize > 200)
-            forceDownload(blobUrl, song.name + '.mp3');
+            forceDownload(blobUrl, song?.name + '.mp3');
         else
-            forceDownload(songUrl, song.name + '.mp3', '_blank');
+            forceDownload(songUrl, song?.name + '.mp3', '_blank');
         setDownloading(false);
         setDownloaded(true);
         if (err) console.error(err);

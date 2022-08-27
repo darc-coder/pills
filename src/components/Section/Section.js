@@ -10,7 +10,7 @@ const Section = (props) => {
         <h2>{props.name}</h2>
       </span>
       <div className="Section">
-        {props.sectionData.map((song, index) => {
+        {props.sectionData?.map((song, index) => {
           return (
             <SongBox key={index} song={song} />
           )

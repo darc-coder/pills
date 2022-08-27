@@ -12,7 +12,7 @@ function PlayerMin({ data, reInit }) {
     const { fullDuration } = useContext(fullDurationContext);
 
     useEffect(() => {
-        setImgSrc(data.image[2].link);
+        setImgSrc(data?.image[2].link);
     }, [data, setImgSrc]);
 
     const seek = (event) => {
@@ -39,7 +39,7 @@ function PlayerMin({ data, reInit }) {
 
             <div className="right">
                 <div className="song-name">
-                    <h5>{sanityTitle(data.name)}</h5>
+                    <h5>{sanityTitle(data?.name)}</h5>
                 </div>
                 <div className="seek-bar" onClick={e => e.stopPropagation()}>
                     <div className="progress-bar" onClick={seek}>

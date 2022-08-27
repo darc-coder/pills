@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import useFetch from '../../useFetch';
 import Loading from '../Loading/Loading';
 import { songIdContext } from '../../SongIdListContext';
@@ -9,6 +9,7 @@ import AudioStateContext, { reInitContext as AudioReInit } from './AudioStateCon
 import PlayerMax from './PlayerMax';
 import AudioPlayer from './Audio';
 import PlayerMin from './PlayerMin';
+import sanityTitle from '../../sanityTitle';
 import './Player.css';
 
 const Player = () => {
@@ -24,6 +25,18 @@ const Player = () => {
   )
 };
 
+const AddToLibrary = async (songId) => {
+  let RecentPlay = await JSON.parse(localStorage.getItem('recently')) || [];
+  let MostPlayed = await JSON.parse(localStorage.getItem('mostPlayed')) || {};
+
+  songId && RecentPlay.unshift(songId);
+  let newRecent = Array.from(new Set(RecentPlay));
+  songId && MostPlayed[songId] ? ++MostPlayed[songId] : MostPlayed[songId] = 1;
+
+  localStorage.setItem('recently', JSON.stringify(newRecent));
+  localStorage.setItem('mostPlayed', JSON.stringify(MostPlayed));
+}
+
 const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
   const [playerActive, setplayerActive] = useState(false);
   const { playerMaxed } = useContext(playerMaxedContext);
@@ -38,12 +51,14 @@ const MainPlayer = ({ songId, isPending, data, error, setSongId }) => {
     setplayerActive(true);
     setDownloading(false);
     setDownloaded(false);
-    document.title = data?.name ? data.name + ' - Pills' : 'Pills by Nitz';
+
+    document.title = data?.name ? sanityTitle(data?.name) + ' - Pills' : 'Pills by Nitz';
+    AddToLibrary(songId);
   }, [data, setDownloaded, setDownloading, songId]);
 
   useEffect(() => {
     if (!isPending && data)
-      setUrl(quality === 'low' ? data.downloadUrl[3]?.link : data.downloadUrl[4]?.link);
+      setUrl(quality === 'low' ? data?.downloadUrl[3]?.link : data?.downloadUrl[4]?.link);
   }, [data, isPending, quality, setUrl]);
 
   const reInit = async () => {

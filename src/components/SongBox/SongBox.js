@@ -8,8 +8,8 @@ const SongBox = (props) => {
   let { title, type, id, image } = props.song;
   let artistName = "";
   let defaultImgUrl = "default-album.jpg";
-  if (props.song.more_info.artistMap)
-    artistName = props.song.more_info.artistMap.artists[0].name;
+  if (props.song?.more_info.artistMap)
+    artistName = props.song?.more_info.artistMap?.artists[0]?.name;
   title = sanityTitle(title);
 
   const [imgSrc, setimgSrc] = useState(image);
@@ -52,8 +52,8 @@ const SongBox = (props) => {
 
   return (
     <>
-      {type === "playlist" && <Link to={'/playlist?id=' + props.song.id}>{songDiv()}</Link>}
-      {type === "album" && <Link to={'/album?id=' + props.song.id}>{songDiv()}</Link>}
+      {type === "playlist" && <Link to={'/playlist?id=' + props.song?.id}>{songDiv()}</Link>}
+      {type === "album" && <Link to={'/album?id=' + props.song?.id}>{songDiv()}</Link>}
     </>
   );
 };

@@ -4,7 +4,7 @@ import { songListContext } from '../../SongIdListContext';
 import sanityTitle from '../../sanityTitle';
 
 function AlbumSection({ data }) {
-    if (data.name) {
+    if (data?.name) {
         return (
             <AlbumSectionDiv data={data} />
         )
@@ -16,7 +16,7 @@ function AlbumSection({ data }) {
 }
 
 function AlbumSectionDiv({ data }) {
-    const [imgSrc, setimgSrc] = useState(data.image[2]?.link || '/default-album-large.jpg');
+    const [imgSrc, setimgSrc] = useState(data?.image[2]?.link || '/default-album-large.jpg');
     const [imgLoad, setimgLoad] = useState(false);
     const { setSongList } = useContext(songListContext);
 
@@ -25,7 +25,7 @@ function AlbumSectionDiv({ data }) {
     }
 
     useEffect(() => {
-        setSongList(data.songs);
+        setSongList(data?.songs);
     }, [data, setSongList])
 
 
@@ -54,11 +54,11 @@ function AlbumSectionDiv({ data }) {
                     />
                 </div>
                 <div className="album-name">
-                    <h2>{sanityTitle(data.name)}</h2>
+                    <h2>{sanityTitle(data?.name)}</h2>
                 </div>
             </div>
             <div className="bottom">
-                {data.songs && data.songs.map((song, index) => <AlbumSongItem key={index} song={song} />)}
+                {data?.songs && data?.songs.map((song, index) => <AlbumSongItem key={index} song={song} />)}
             </div>
         </>
     )

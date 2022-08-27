@@ -1,19 +1,35 @@
 .Library {
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 150px 1fr;
     height: calc(100vh - 50px);
     gap: 5px;
 }
 
-.Library .Pic{
+.Library .Pic {
     display: flex;
     justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
+    align-self: center;
+    justify-self: center;
+    background-color: #337;
+    position: relative;
 }
 
-.Pic img{
-    height: 200px;
-    scale: 2;
-    
+.Pic img {
+    height: 102px;
+    filter: invert(1);
+}
+
+.Pic .addPic {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+
 }
 
 .Accordions {
@@ -42,6 +58,7 @@
     border: none;
     outline: none;
     transition: 0.4s;
+    z-index: 1;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */

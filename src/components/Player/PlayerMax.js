@@ -12,9 +12,11 @@ function PlayerMax({ data }) {
     const { quality, setQuality } = useContext(qualityContext);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
+    let Favourites = getFavourites();
+    const [isFavourite, setFavourite] = useState(Favourites.indexOf(data?.id) > -1);
 
     useEffect(() => {
-        setImgSrc(data.image[2].link);
+        setImgSrc(data?.image[2].link);
     }, [data, setImgSrc]);
 
     const seek = (event) => {
@@ -37,6 +39,22 @@ function PlayerMax({ data }) {
             secs = '0' + secs;
         }
         return mins + ':' + secs;
+    }
+
+    function getFavourites() {
+        return JSON.parse(localStorage.getItem('favourites')) || [];
+    }
+
+    function setFavourites(favourite) {
+        if (Favourites.indexOf(favourite) === -1)
+            Favourites.push(favourite);
+        else
+            Favourites.splice(Favourites.indexOf(favourite), 1);
+
+        setFavourite(Favourites.indexOf(data?.id) > -1);
+
+        let Arr = Array.from(new Set(Favourites));
+        localStorage.setItem('favourites', JSON.stringify(Arr));
     }
 
     return (
@@ -67,11 +85,14 @@ function PlayerMax({ data }) {
                     />
                 </div>
                 <div className="song-name album-name">
-                    <h2>{sanityTitle(data.name)}</h2>
-                    <h5>{sanityTitle(data.artist)}</h5>
+                    <h2>{sanityTitle(data?.name)}</h2>
+                    <h5>{sanityTitle(data?.artist)}</h5>
                 </div>
             </div>
             <div className="bottom">
+                <span className="favorite" onClick={() => setFavourites(data?.id)}>
+                    <span className={isFavourite ? "icon Active" : "icon"}></span>
+                </span>
                 <div className="seek-bar" onClick={e => e.stopPropagation()}>
                     <span className="duration">{getTimeinMins(duration)}</span>
                     <div className="progress-bar" onClick={seek}>

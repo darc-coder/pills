@@ -46,5 +46,5 @@ The App was built with the goal as learning and mastering react by making a hand
 <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_4.png" width="30%"></img>
 <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_5.png" width="30%"></img>
 <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_6.png" width="30%"></img>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_7.png" width="50%"></img>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_8.png" width="50%"></img>
+<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_7.png" width="45%"></img>
+<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_8.png" width="45%"></img>

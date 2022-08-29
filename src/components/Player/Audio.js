@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { songIdContext, songListContext } from '../../SongIdListContext';
 import { playingContext, durationContext } from './AudioStateContext';
-import { fullDurationContext } from './AudioStateContext';
+import { fullDurationContext, toggleContext } from './AudioStateContext';
 import './Player.css';
 
 const useAudio = url => {
@@ -8,6 +9,9 @@ const useAudio = url => {
     const { playing, setPlaying } = useContext(playingContext);
     const { duration, setDuration } = useContext(durationContext);
     const { setFullDuration } = useContext(fullDurationContext);
+    const { songId, setSongId } = useContext(songIdContext);
+    const { songList } = useContext(songListContext);
+    const { autoplay } = useContext(toggleContext);
 
     useEffect(() => {
         playing ? audio.play() : audio.pause();
@@ -26,7 +30,15 @@ const useAudio = url => {
     }, [audio, setFullDuration, setPlaying, url]);
 
     useEffect(() => {
-        audio.addEventListener('ended', () => setPlaying(false));
+        const next = () => {
+            if (autoplay) {
+                let index = songList.findIndex(song => song?.id === songId);
+                if (index + 1 < songList.length) {
+                    setSongId(songList[index + 1].id);
+                }
+            }
+        }
+        audio.addEventListener('ended', () => { next(); setPlaying(false); });
         audio.onpause = () => setPlaying(false);
         audio.onplay = () => setPlaying(true);
         return () => {
@@ -34,7 +46,7 @@ const useAudio = url => {
             audio.removeEventListener('pause', () => setPlaying(false));
             audio.removeEventListener('play', () => setPlaying(true));
         };
-    }, [audio, setPlaying]);
+    }, [audio, autoplay, setPlaying, setSongId, songId, songList]);
 
     useEffect(() => {
 

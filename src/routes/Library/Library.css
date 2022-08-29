@@ -16,20 +16,28 @@
     overflow: hidden;
     align-self: center;
     justify-self: center;
-    background-color: #337;
     position: relative;
 }
 
 .Pic img {
+    width: 102px;
     height: 102px;
-    filter: invert(1);
+    object-fit: scale-down;
 }
 
 .Pic .addPic {
     position: absolute;
     bottom: 0;
-    right: 15px;
+    right: -4px;
+    color: #444;
+    padding: 8px;
+    backdrop-filter: blur(8px);
+    border-radius: 25px;
+    box-shadow: 0 0 10px 8px rgba(0, 0, 0, 0.2);
+}
 
+.Pic input[type=file] {
+    display: none;
 }
 
 .Accordions {
@@ -61,7 +69,6 @@
     z-index: 1;
 }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .Accordion .active,
 .Accordion-head:hover {
     background-color: #dedee6;

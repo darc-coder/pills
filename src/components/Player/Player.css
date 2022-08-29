@@ -215,7 +215,8 @@
   background: #4DB6AC;
 }
 
-.switch input[type=checkbox]:checked+label::after {
+.switch input[type=checkbox]:checked+label .icon,
+.switch input[type=checkbox]:checked+label .customIcon {
   left: calc(100% - 6px);
   transform: translateX(-100%);
 }
@@ -232,7 +233,8 @@
   transition: all 0.5s ease-out;
 }
 
-.switch label::after {
+.switch label .icon,
+.customIcon {
   content: "";
   position: absolute;
   top: 4px;
@@ -242,4 +244,24 @@
   background: white;
   border-radius: 16px;
   transition: 0.5s;
+}
+
+.switch>span {
+  color: #ccc;
+  transition: all 0.2s ease-out;
+}
+
+.switch>span.iconActive {
+  color: #2196f5;
+  text-shadow: 0 0 20px #000;
+}
+
+.switch .customIcon+.icon {
+  background: transparent;
+}
+
+.customIcon {
+  z-index: 2;
+  background: transparent;
+  color: #fafafa;
 }

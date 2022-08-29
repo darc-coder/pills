@@ -87,14 +87,16 @@ span.favorite {
   height: 50px;
   width: 50px;
   box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-out;
 }
 
-.favorite .icon::after {
-  content: " \2764";
-  position: relative;
-  top: 3px;
+.row {
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
-.favorite .icon.Active {
+.favorite.Active {
   color: red;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useMemo } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useFetch from '../../useFetch';
 import Loading from '../Loading/Loading';
 import { songIdContext } from '../../SongIdListContext';

@@ -12,13 +12,37 @@ const Library = () => {
   const MostPlayedObj = JSON.parse(localStorage.getItem('mostPlayed')) || {};
   const SanitizedArr = SanityArray(Object.keys(MostPlayedObj).map(key => [key, MostPlayedObj[key]]));
   const MostPlayed = SanitizedArr.sort((a, b) => b[1] - a[1]).map(key => key[0]).slice(0, 30);
+  const defaultImg = './resources/userListen.png';
+  const [imgSrc, setimgSrc] = useState(localStorage.getItem('image') || defaultImg)
+  const fileInput = useRef(null);
+
+  const loadFile = async () => {
+    const img = fileInput.current.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+      const base64data = reader.result;
+      localStorage.setItem("image", base64data);
+      setimgSrc(base64data);
+    }
+
+    createImageBitmap(img, { resizeWidth: 200, resizeQuality: 'high' })
+      .then(imageBitmap => {
+        const canvas = document.createElement('canvas');
+        canvas.width = imageBitmap.width;
+        canvas.height = imageBitmap.height;
+        const ctx = canvas.getContext('bitmaprenderer');
+        ctx.transferFromImageBitmap(imageBitmap);
+        canvas.toBlob((result) => reader.readAsDataURL(result));
+      });
+  }
 
   return (
     <div className="Library">
-      <div className="Pic">
-        <img src="./resources/userListen.png" alt="display pic" />
-        <input type="file" name="addPic" id="addPic" accept="image/jpeg;" />
-        <span class="material-symbols-outlined addPic">
+      <div className="Pic" style={{ backgroundColor: imgSrc === defaultImg ? '#337' : '#ddd' }}>
+        <img src={imgSrc} alt="display pic" />
+        <input type="file" name="addPic" id="addPic" accept="image/*;" ref={fileInput} onChange={loadFile} />
+        <span className="material-symbols-outlined addPic" onClick={() => fileInput?.current?.click()}>
           add_a_photo
         </span>
       </div>

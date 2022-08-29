@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import sanityTitle from '../../sanityTitle';
 import MediaControls from './MediaControls';
 import { playerMaxedContext, imgSrcContext, qualityContext } from './PlayersContext'
-import { durationContext, fullDurationContext } from './AudioStateContext';
+import { durationContext, fullDurationContext, toggleContext } from './AudioStateContext';
 
 
 function PlayerMax({ data }) {
@@ -12,6 +12,7 @@ function PlayerMax({ data }) {
     const { quality, setQuality } = useContext(qualityContext);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
+    const { autoplay, setAutoPlay } = useContext(toggleContext);
     let Favourites = getFavourites();
     const [isFavourite, setFavourite] = useState(Favourites.indexOf(data?.id) > -1);
 
@@ -90,9 +91,10 @@ function PlayerMax({ data }) {
                 </div>
             </div>
             <div className="bottom">
-                <span className="favorite" onClick={() => setFavourites(data?.id)}>
-                    <span className={isFavourite ? "icon Active" : "icon"}></span>
+                <span className={isFavourite ? "favorite Active" : "favorite"} onClick={() => setFavourites(data?.id)}>
+                    <span className="material-symbols filled">favorite</span>
                 </span>
+
                 <div className="seek-bar" onClick={e => e.stopPropagation()}>
                     <span className="duration">{getTimeinMins(duration)}</span>
                     <div className="progress-bar" onClick={seek}>
@@ -101,14 +103,27 @@ function PlayerMax({ data }) {
                     <span className="fullDuration">{getTimeinMins(fullDuration)}</span>
                 </div>
                 <MediaControls />
-                <span className="quality">
-                    <div className="switch">
-                        <span>160 Kbps</span>
-                        <input type="checkbox" id="quality" checked={quality !== 'low'} onChange={(e) => e.target.checked ? setQuality('high') : setQuality('low')} />
-                        <label htmlFor="quality"></label>
-                        <span>320 Kbps</span>
-                    </div>
-                </span>
+                <div className="row">
+                    <span className="quality">
+                        <div className="switch">
+                            <span className={quality === 'low' ? 'iconActive' : ''}>SD</span>
+                            <input type="checkbox" id="quality" checked={quality !== 'low'} onChange={(e) => e.target.checked ? setQuality('high') : setQuality('low')} />
+                            <label htmlFor="quality">
+                                <span className="icon"></span>
+                            </label>
+                            <span className={quality !== 'low' ? 'iconActive' : ''}>HD</span>
+                        </div>
+                    </span>
+                    <span className="autoplay">
+                        <div className="switch small">
+                            <input type="checkbox" id="autoplay" checked={autoplay} onChange={e => setAutoPlay(!autoplay)} />
+                            <label htmlFor="autoplay">
+                                <span className="material-symbols-outlined filled customIcon">play_circle</span>
+                                <span className="icon"></span>
+                            </label>
+                        </div>
+                    </span>
+                </div>
             </div>
         </div>
     )

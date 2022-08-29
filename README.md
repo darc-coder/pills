@@ -40,12 +40,4 @@ The App was built with the goal as learning and mastering react by making a hand
 
 ## Screenshots
 
-
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_1.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_2.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_3.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_4.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_5.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_6.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_7.png" width="23%"/>
-<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_8.png" width="23%"/>
+<img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_1.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_2.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_3.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_4.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_5.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_6.png" width="30%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_7.png" width="40%"></img> <img src="https://github.com/darc-coder/pills/raw/master/public/screenshots/Pills_8.png" width="40%"></img> 

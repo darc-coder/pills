@@ -15,9 +15,17 @@ const Home = () => {
   };
 
   let data = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} };
+  let data_alt = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} }
+  let error2 = null;
 
-  const { isPending, data: Data, error } = useFetch('https://saavn.me/home');
+  let { isPending, data: Data, error } = useFetch('https://saavn.me/home');
   data = Data;
+
+  ({ isPending, data: data_alt, error: error2 } = useFetch('home.json'));
+  if (error && !error2) {
+    data = data_alt;
+    error = error2;
+  }
 
   return (
     <div className="Home">

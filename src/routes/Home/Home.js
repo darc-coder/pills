@@ -18,7 +18,7 @@ const Home = () => {
   let data_alt = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} }
   let error2 = null;
 
-  let { isPending, data: Data, error } = useFetch('https://saavn.me/home');
+  let { isPending, data: Data, error } = useFetch('https://nitz-saavn.vercel.app/home');
   data = Data;
 
   ({ isPending, data: data_alt, error: error2 } = useFetch('home.json'));

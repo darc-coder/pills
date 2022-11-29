@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import config from '../../config.json';
 import Loading from '../../components/Loading/Loading';
 import useFetch from '../../useFetch';
 import AlbumSongItem from '../Album/AlbumSongItem';
@@ -78,7 +79,7 @@ const Accordion = ({ name, songIDList }) => {
   }
 
 
-  const { isPending, data, error } = useFetch('https://saavn.me/songs?id=' + songIDList.join(','));
+  const { isPending, data, error } = useFetch(config.url + '/songs?id=' + songIDList.join(','));
 
   return (
     <div className="Accordion" onClick={() => setActive(!Active)} style={styles.acc_box}>

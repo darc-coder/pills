@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../../config.json';
 import { useLocation } from 'react-router-dom';
 import useFetch from '../../useFetch';
 import AlbumSection from './AlbumSection';
@@ -18,7 +19,7 @@ const Album = ({ type, queryID }) => {
 
 function AlbumDiv({ album_id, type }) {
 
-  let { isPending, data, error } = useFetch('https://saavn.me/' + type + '?id=' + album_id);
+  let { isPending, data, error } = useFetch(config.url + '/' + type + '?id=' + album_id);
 
   return (
     <>

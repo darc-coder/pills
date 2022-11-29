@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import config from '../../config.json';
 import useFetch from '../../useFetch';
 import Loading from '../Loading/Loading';
 import { songIdContext } from '../../SongIdListContext';
@@ -14,7 +15,7 @@ import './Player.css';
 
 const Player = () => {
   const { songId, setSongId } = useContext(songIdContext);
-  const { isPending, data, error } = useFetch('https://saavn.me/songs?id=' + songId);
+  const { isPending, data, error } = useFetch(config.url + '/songs?id=' + songId);
 
   return (
     <PlayersContext>

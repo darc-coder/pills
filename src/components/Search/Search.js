@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import config from '../../config.json';
 import { Link } from 'react-router-dom';
 import useFetch from '../../useFetch';
 import { songIdContext } from '../../SongIdListContext';
@@ -9,7 +10,7 @@ import './DataList.css';
 const Search = () => {
 
   const [query, setquery] = useState('');
-  const { isPending, data } = useFetch(`https://saavn.me/search/all?query=${query}`);
+  const { isPending, data } = useFetch(`${config.url}/search/all?query=${query}`);
   const placeholderText = "Search For a song, albums, artist";
 
   const search = (event) => {

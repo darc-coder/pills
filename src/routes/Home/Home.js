@@ -18,12 +18,13 @@ const Home = () => {
   let data = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} };
   let data_alt = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} }
   let error2 = null;
+  let isPending2 = false;
 
-  let { isPending, data: Data, error } = useFetch(config.url);
+  let { isPending, data: Data, error } = useFetch(config.url + '/home');
   data = Data;
 
-  ({ isPending, data: data_alt, error: error2 } = useFetch('home.json'));
-  if (error && !error2) {
+  ({ isPending2, data: data_alt, error: error2 } = useFetch('home.json'));
+  if (error && !error2 && !isPending2) {
     data = data_alt;
     error = error2;
   }
@@ -36,9 +37,9 @@ const Home = () => {
       </header>
       {isPending && <Loading />}
       {error && <div><Loading />{error}</div>}
-      {!isPending && !error && data && Object.keys(sections).map(key => {
+      {!isPending && !error && Object.keys(sections).map(key => {
         return (
-          <Section name={key} sectionData={data[sections[key]]} key={key} />
+          <Section name={key} sectionData={data && data[sections[key]]} key={key} />
         )
       })}
     </div>

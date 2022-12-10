@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import config from '../../config.json';
 import useFetch from '../../useFetch';
 import Search from '../../components/Search/Search';
 import Section from '../../components/Section/Section';
@@ -18,7 +19,7 @@ const Home = () => {
   let data_alt = { new_trending: {}, top_playlists: {}, new_albums: {}, charts: {} }
   let error2 = null;
 
-  let { isPending, data: Data, error } = useFetch('https://nitz-saavn.vercel.app/home');
+  let { isPending, data: Data, error } = useFetch(config.url);
   data = Data;
 
   ({ isPending, data: data_alt, error: error2 } = useFetch('home.json'));
@@ -35,7 +36,7 @@ const Home = () => {
       </header>
       {isPending && <Loading />}
       {error && <div><Loading />{error}</div>}
-      {!isPending && !error && Object.keys(sections).map(key => {
+      {!isPending && !error && data && Object.keys(sections).map(key => {
         return (
           <Section name={key} sectionData={data[sections[key]]} key={key} />
         )

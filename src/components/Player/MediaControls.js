@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { songIdContext, songListContext } from '../../SongIdListContext';
 import { playingContext, toggleContext, durationContext } from './AudioStateContext';
-import { urlContext, downloadingContext, downloadedContext } from './PlayersContext';
+import { setDownloading, setDownloaded } from './actions';
+
 
 const MediaControls = () => {
+    const dispatch = useDispatch();
+
     const { songId, setSongId } = useContext(songIdContext);
     const { songList } = useContext(songListContext);
     const { playing } = useContext(playingContext);
     const { toggle } = useContext(toggleContext);
     const { setDuration } = useContext(durationContext);
-    const { url: songUrl } = useContext(urlContext);
-    const { downloading, setDownloading } = useContext(downloadingContext);
-    const { downloaded, setDownloaded } = useContext(downloadedContext);
+    const { songUrl, downloading, downloaded } = useSelector(store => store);
 
     const next = () => {
         let index = songList.findIndex(song => song?.id === songId);
@@ -32,7 +34,7 @@ const MediaControls = () => {
     }
 
     const download = async () => {
-        setDownloading(true);
+        dispatch(setDownloading(true));
         let song = songList.find(song => song?.id === songId);
         let url = songUrl.slice(8,);
         let corsUrl = 'https://nitz-cors.herokuapp.com/' + url;
@@ -43,8 +45,8 @@ const MediaControls = () => {
             forceDownload(blobUrl, song?.name + '.mp3');
         else
             forceDownload(songUrl, song?.name + '.mp3', '_blank');
-        setDownloading(false);
-        setDownloaded(true);
+        dispatch(setDownloading(false));
+        dispatch(setDownloaded(true));
         if (err) console.error(err);
     }
 

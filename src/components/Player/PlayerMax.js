@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { maxMinPlayer, setImgSrc, setQuality } from './actions';
 import sanityTitle from '../../sanityTitle';
 import MediaControls from './MediaControls';
-import { playerMaxedContext, imgSrcContext, qualityContext } from './PlayersContext'
+import { } from './PlayersContext'
 import { durationContext, fullDurationContext, toggleContext } from './AudioStateContext';
 
 
 function PlayerMax({ data }) {
+    const dispatch = useDispatch();
+
     const [imgLoad, setimgLoad] = useState(false);
-    const { playerMaxed, setPlayerMax } = useContext(playerMaxedContext);
-    const { imgSrc, setImgSrc } = useContext(imgSrcContext);
-    const { quality, setQuality } = useContext(qualityContext);
+    const { playerMaxed } = useSelector(store => store);
+    const { imgSrc } = useSelector(store => store);
+    const { quality } = useSelector(store => store);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
     const { autoplay, setAutoPlay } = useContext(toggleContext);
@@ -17,8 +21,8 @@ function PlayerMax({ data }) {
     const [isFavourite, setFavourite] = useState(Favourites.indexOf(data?.id) > -1);
 
     useEffect(() => {
-        setImgSrc(data?.image[2].link);
-    }, [data, setImgSrc]);
+        dispatch(setImgSrc(data?.image[2].link));
+    }, [data?.image, dispatch]);
 
     const seek = (event) => {
         const seekBar = event.currentTarget;
@@ -60,7 +64,7 @@ function PlayerMax({ data }) {
 
     return (
         <div className="Player max">
-            <span className="material-symbols-outlined playerMax" onClick={() => setPlayerMax(!playerMaxed)}>
+            <span className="material-symbols-outlined playerMax" onClick={() => dispatch(maxMinPlayer(!playerMaxed))}>
                 expand_more
             </span>
             <div className="top">
@@ -107,7 +111,7 @@ function PlayerMax({ data }) {
                     <span className="quality">
                         <div className="switch">
                             <span className={quality === 'low' ? 'iconActive' : ''}>SD</span>
-                            <input type="checkbox" id="quality" checked={quality !== 'low'} onChange={(e) => e.target.checked ? setQuality('high') : setQuality('low')} />
+                            <input type="checkbox" id="quality" checked={quality !== 'low'} onChange={(e) => dispatch(e.target.checked ? setQuality('high') : setQuality('low'))} />
                             <label htmlFor="quality">
                                 <span className="icon"></span>
                             </label>

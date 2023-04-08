@@ -19,6 +19,10 @@ const useAudio = url => {
     );
 
     useEffect(() => {
+        return () => { audio.src = '' }
+    }, [])
+
+    useEffect(() => {
         audio.src = url;
         audio.oncanplay = () => {
             audio.play();

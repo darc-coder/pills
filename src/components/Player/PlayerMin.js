@@ -1,19 +1,22 @@
 import React, { useEffect, useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { maxMinPlayer, setImgSrc } from './actions';
 import sanityTitle from '../../sanityTitle';
 import MediaControls from './MediaControls';
-import { playerMaxedContext, imgSrcContext } from './PlayersContext'
+import { } from './PlayersContext'
 import { durationContext, fullDurationContext } from './AudioStateContext';
 import './PlayerMin.css';
 
 function PlayerMin({ data, reInit }) {
-    const { playerMaxed, setPlayerMax } = useContext(playerMaxedContext);
-    const { imgSrc, setImgSrc } = useContext(imgSrcContext);
+    const dispatch = useDispatch();
+    const { playerMaxed } = useSelector(store => store);
+    const { imgSrc } = useSelector(store => store);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
 
     useEffect(() => {
-        setImgSrc(data?.image[2].link);
-    }, [data, setImgSrc]);
+        dispatch(setImgSrc(data?.image[2].link));
+    }, [data?.image, dispatch]);
 
     const seek = (event) => {
         const seekBar = event.currentTarget;
@@ -29,7 +32,7 @@ function PlayerMin({ data, reInit }) {
     }
 
     return (
-        <div className="Player mini" onClick={() => setPlayerMax(!playerMaxed)}>
+        <div className="Player mini" onClick={() => dispatch(maxMinPlayer(!playerMaxed))}>
 
             <div className="left">
                 <div className="image">

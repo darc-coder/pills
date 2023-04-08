@@ -11,9 +11,7 @@ function PlayerMax({ data }) {
     const dispatch = useDispatch();
 
     const [imgLoad, setimgLoad] = useState(false);
-    const { playerMaxed } = useSelector(store => store);
-    const { imgSrc } = useSelector(store => store);
-    const { quality } = useSelector(store => store);
+    const { playerMaxed, imgSrc, quality } = useSelector(store => store);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
     const { autoplay, setAutoPlay } = useContext(toggleContext);

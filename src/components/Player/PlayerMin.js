@@ -9,8 +9,7 @@ import './PlayerMin.css';
 
 function PlayerMin({ data, reInit }) {
     const dispatch = useDispatch();
-    const { playerMaxed } = useSelector(store => store);
-    const { imgSrc } = useSelector(store => store);
+    const { playerMaxed, imgSrc } = useSelector(store => store);
     const { duration, setDuration } = useContext(durationContext);
     const { fullDuration } = useContext(fullDurationContext);
 
